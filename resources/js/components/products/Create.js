@@ -78,7 +78,7 @@ export default class CreateProduct extends React.Component {
     addProduct() {
         axios
             .post(
-                "http://127.0.0.1:8000/api/products",
+                "./api/products",
                 this.state.newProductData
             )
             .then(response => {

@@ -44,7 +44,7 @@ export default class Products extends React.Component {
     // Get products
     // @void
     getProducts() {
-        axios.get("http://127.0.0.1:8000/api/products").then(response => {
+        axios.get("./api/products").then(response => {
             this.setState({ products: response.data });
         });
     }
@@ -84,7 +84,7 @@ export default class Products extends React.Component {
         } = this.state.editProductData;
         if (id !== "" && name !== "" && description !== "" && stock !== "") {
             axios
-                .put("http://127.0.0.1:8000/api/product/" + id, {
+                .put("./api/product/" + id, {
                     name,
                     description,
                     stock,
@@ -107,7 +107,7 @@ export default class Products extends React.Component {
     // @void
     deleteProduct(id) {
         axios
-            .delete("http://127.0.0.1:8000/api/product/" + id)
+            .delete("./api/product/" + id)
             .then(response => {
                 if (response.status === 200) {
                     this.getProducts();

@@ -37,7 +37,7 @@ export default class Create extends React.Component {
     // Get products
     // @void
     getProducts() {
-        axios.get("http://127.0.0.1:8000/api/products").then(response => {
+        axios.get("./api/products").then(response => {
             this.setState({ products: response.data });
         });
     }
@@ -87,7 +87,7 @@ export default class Create extends React.Component {
 
         // Get the selected Product details
         axios
-            .get("http://127.0.0.1:8000/api/product/" + product_id)
+            .get("./api/product/" + product_id)
             .then(response => {
                 if (response.status === 200) {
                     this.setState({
@@ -120,7 +120,7 @@ export default class Create extends React.Component {
                     });
 
                     axios
-                        .post("http://127.0.0.1:8000/api/sales", {
+                        .post("./api/sales", {
                             customer_name,
                             product_name,
                             quantity
@@ -131,7 +131,7 @@ export default class Create extends React.Component {
                                 const { stock } = this.state.updateProductData;
                                 axios
                                     .put(
-                                        "http://127.0.0.1:8000/api/product/" +
+                                        "./api/product/" +
                                             product_id,
                                         {
                                             stock
@@ -141,7 +141,7 @@ export default class Create extends React.Component {
                                         if (response.status === 200) {
                                             this.resetNewSaleData();
                                             this.resetFormData();
-                                            toastr(
+                                            toastr.success(
                                                 "Sale created!",
                                                 "Success!!!"
                                             );

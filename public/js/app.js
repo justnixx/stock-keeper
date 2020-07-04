@@ -81337,7 +81337,7 @@ var CreateProduct = /*#__PURE__*/function (_React$Component) {
     value: function addProduct() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("http://127.0.0.1:8000/api/products", this.state.newProductData).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("./api/products", this.state.newProductData).then(function (response) {
         if (response.status === 200) {
           _this3.resetNewProductData();
 
@@ -81474,7 +81474,7 @@ var Products = /*#__PURE__*/function (_React$Component) {
     value: function getProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://127.0.0.1:8000/api/products").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/products").then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -81523,7 +81523,7 @@ var Products = /*#__PURE__*/function (_React$Component) {
           price = _this$state$editProdu.price;
 
       if (id !== "" && name !== "" && description !== "" && stock !== "") {
-        axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("http://127.0.0.1:8000/api/product/" + id, {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("./api/product/" + id, {
           name: name,
           description: description,
           stock: stock,
@@ -81550,7 +81550,7 @@ var Products = /*#__PURE__*/function (_React$Component) {
     value: function deleteProduct(id) {
       var _this5 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("http://127.0.0.1:8000/api/product/" + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("./api/product/" + id).then(function (response) {
         if (response.status === 200) {
           _this5.getProducts();
         }
@@ -81776,7 +81776,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
     value: function getProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://127.0.0.1:8000/api/products").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/products").then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -81831,7 +81831,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
           product_name = _this$state$newSaleDa.product_name,
           quantity = _this$state$newSaleDa.quantity; // Get the selected Product details
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://127.0.0.1:8000/api/product/" + product_id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/product/" + product_id).then(function (response) {
         if (response.status === 200) {
           _this4.setState({
             updateProductData: response.data
@@ -81854,7 +81854,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
             updateProductData: updateProductData
           });
 
-          axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("http://127.0.0.1:8000/api/sales", {
+          axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("./api/sales", {
             customer_name: customer_name,
             product_name: product_name,
             quantity: quantity
@@ -81862,7 +81862,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
             if (response.status === 200) {
               //  Update product
               var stock = _this4.state.updateProductData.stock;
-              axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("http://127.0.0.1:8000/api/product/" + product_id, {
+              axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("./api/product/" + product_id, {
                 stock: stock
               }).then(function (response) {
                 if (response.status === 200) {
@@ -81870,7 +81870,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
 
                   _this4.resetFormData();
 
-                  toastr__WEBPACK_IMPORTED_MODULE_3___default()("Sale created!", "Success!!!");
+                  toastr__WEBPACK_IMPORTED_MODULE_3___default.a.success("Sale created!", "Success!!!");
                 }
               });
             }
@@ -82046,7 +82046,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
     value: function getProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://127.0.0.1:8000/api/products").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/products").then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -82059,7 +82059,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
     value: function getSales() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://127.0.0.1:8000/api/sales").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/sales").then(function (response) {
         _this3.setState({
           sales: response.data
         });
@@ -82115,7 +82115,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
           customer_name = _this$state$editSaleD.customer_name,
           product_name = _this$state$editSaleD.product_name,
           quantity = _this$state$editSaleD.quantity;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("http://127.0.0.1:8000/api/sale/" + id, {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("./api/sale/" + id, {
         customer_name: customer_name,
         product_name: product_name,
         quantity: quantity
@@ -82152,7 +82152,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
     value: function deleteSale(id) {
       var _this5 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("http://127.0.0.1:8000/api/sale/" + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("./api/sale/" + id).then(function (response) {
         if (response.status === 200) {
           _this5.getSales();
 
