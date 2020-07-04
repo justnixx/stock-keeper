@@ -1,0 +1,49 @@
+$app-dark: #343a40;
+
+body {
+    background-color: #F1F1F1;
+}
+
+.form-control {
+    &:focus {
+        box-shadow: 0 0 0 0.1rem rgba(52, 144, 220, 0.25);
+    }
+}
+
+.app-container {
+    position: relative;
+}
+
+.left-pane {
+    position: sticky;
+    left: 0;
+
+    ul {
+        button {
+            text-transform: uppercase;
+            transition: background-color .45s ease;
+
+            &:hover {
+                background-color: $app-dark;
+                color: #fafafa;
+            }
+
+            &:focus,
+            &:active {
+                background-color: $app-dark;
+                color: #fafafa;
+            }
+        }
+    }
+}
+
+
+.main {
+    position: absolute;
+    right: 0;
+}
+
+.tab-active {
+    background-color: $app-dark;
+    color: #fafafa;
+}
