@@ -77,10 +77,7 @@ export default class CreateProduct extends React.Component {
     //  @void
     addProduct() {
         axios
-            .post(
-                "./api/products",
-                this.state.newProductData
-            )
+            .post("/api/products", this.state.newProductData)
             .then(response => {
                 if (response.status === 200) {
                     this.resetNewProductData();
@@ -94,7 +91,9 @@ export default class CreateProduct extends React.Component {
         return (
             <Card>
                 <CardHeader className="bg-dark text-white">
-                    <CardTitle>Add New Product</CardTitle>
+                    <CardTitle className="text-uppercase">
+                        Add New Product
+                    </CardTitle>
                 </CardHeader>
                 <CardBody>
                     <Form

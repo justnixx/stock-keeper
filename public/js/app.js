@@ -81152,7 +81152,10 @@ var App = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Container"], {
         className: "py-4 app-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Row"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
-        xs: "3 left-pane"
+        xs: "5",
+        md: "3",
+        lg: "3",
+        className: "left-pane"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ListGroup"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["ListGroupItem"], {
         tag: "button",
         className: "app-tab tab-active",
@@ -81194,7 +81197,10 @@ var App = /*#__PURE__*/function (_Component) {
           _this2.renderCreateSaleComponent();
         }
       }, "Create Sale"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
-        xs: "9 main"
+        xs: "7",
+        md: "9",
+        lg: "9",
+        className: "main"
       }, this.state.components.showProducts && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_Products__WEBPACK_IMPORTED_MODULE_3__["default"], null), this.state.components.showCreateProduct && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_Create__WEBPACK_IMPORTED_MODULE_4__["default"], null), this.state.components.showSales && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sales_Sales__WEBPACK_IMPORTED_MODULE_5__["default"], null), this.state.components.showCreateSale && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sales_Create__WEBPACK_IMPORTED_MODULE_6__["default"], null))));
     }
   }]);
@@ -81337,7 +81343,7 @@ var CreateProduct = /*#__PURE__*/function (_React$Component) {
     value: function addProduct() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("./api/products", this.state.newProductData).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/products", this.state.newProductData).then(function (response) {
         if (response.status === 200) {
           _this3.resetNewProductData();
 
@@ -81352,7 +81358,9 @@ var CreateProduct = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardHeader"], {
         className: "bg-dark text-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, "Add New Product")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], {
+        className: "text-uppercase"
+      }, "Add New Product")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
         name: "newProduct",
         method: "POST",
         onSubmit: this.handleOnSubmit,
@@ -81474,7 +81482,7 @@ var Products = /*#__PURE__*/function (_React$Component) {
     value: function getProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/products").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/products").then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -81523,7 +81531,7 @@ var Products = /*#__PURE__*/function (_React$Component) {
           price = _this$state$editProdu.price;
 
       if (id !== "" && name !== "" && description !== "" && stock !== "") {
-        axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("./api/product/" + id, {
+        axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/product/" + id, {
           name: name,
           description: description,
           stock: stock,
@@ -81550,9 +81558,11 @@ var Products = /*#__PURE__*/function (_React$Component) {
     value: function deleteProduct(id) {
       var _this5 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("./api/product/" + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/product/" + id).then(function (response) {
         if (response.status === 200) {
           _this5.getProducts();
+
+          toastr__WEBPACK_IMPORTED_MODULE_3___default.a.success("Product deleted!", "Success!!!");
         }
       });
     } // Reset edit product Data
@@ -81608,7 +81618,9 @@ var Products = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardHeader"], {
         className: "bg-dark text-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, "Products")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], {
+        className: "text-uppercase"
+      }, "Products")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "table-responsive-lg"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Table"], {
         className: "table table-striped table-bordered table-light"
@@ -81616,7 +81628,7 @@ var Products = /*#__PURE__*/function (_React$Component) {
         isOpen: this.state.editProductModal,
         toggle: this.toggleEditProductModal
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
-        className: "bg-success text-white"
+        className: "bg-dark text-white"
       }, "Edit Product"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
         name: "editProduct",
         method: "POST",
@@ -81776,7 +81788,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
     value: function getProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/products").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/products").then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -81815,7 +81827,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
 
         });
       } else {
-        toastr__WEBPACK_IMPORTED_MODULE_3___default.a.error("Cannot create empty sale!", "Error!!!");
+        toastr__WEBPACK_IMPORTED_MODULE_3___default.a.error("Cannot create an empty sale!", "Error!!!");
       }
     } // Add sale
     // @void
@@ -81831,7 +81843,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
           product_name = _this$state$newSaleDa.product_name,
           quantity = _this$state$newSaleDa.quantity; // Get the selected Product details
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/product/" + product_id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/product/" + product_id).then(function (response) {
         if (response.status === 200) {
           _this4.setState({
             updateProductData: response.data
@@ -81854,7 +81866,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
             updateProductData: updateProductData
           });
 
-          axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("./api/sales", {
+          axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/sales", {
             customer_name: customer_name,
             product_name: product_name,
             quantity: quantity
@@ -81862,7 +81874,7 @@ var Create = /*#__PURE__*/function (_React$Component) {
             if (response.status === 200) {
               //  Update product
               var stock = _this4.state.updateProductData.stock;
-              axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("./api/product/" + product_id, {
+              axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/product/" + product_id, {
                 stock: stock
               }).then(function (response) {
                 if (response.status === 200) {
@@ -81928,7 +81940,9 @@ var Create = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardHeader"], {
         className: "bg-dark text-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, "Add New Sale")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], {
+        className: "text-uppercase"
+      }, "Create New Sale")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
         name: "newSale",
         method: "POST",
         autoComplete: "off",
@@ -82046,7 +82060,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
     value: function getProducts() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/products").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/products").then(function (response) {
         _this2.setState({
           products: response.data
         });
@@ -82059,7 +82073,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
     value: function getSales() {
       var _this3 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("./api/sales").then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/sales").then(function (response) {
         _this3.setState({
           sales: response.data
         });
@@ -82115,7 +82129,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
           customer_name = _this$state$editSaleD.customer_name,
           product_name = _this$state$editSaleD.product_name,
           quantity = _this$state$editSaleD.quantity;
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("./api/sale/" + id, {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.put("/api/sale/" + id, {
         customer_name: customer_name,
         product_name: product_name,
         quantity: quantity
@@ -82152,7 +82166,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
     value: function deleteSale(id) {
       var _this5 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("./api/sale/" + id).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a["delete"]("/api/sale/" + id).then(function (response) {
         if (response.status === 200) {
           _this5.getSales();
 
@@ -82224,7 +82238,9 @@ var Sales = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardHeader"], {
         className: "bg-dark text-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, "Sales")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], {
+        className: "text-uppercase"
+      }, "Sales")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "table-responsive-lg"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Table"], {
         className: "table table-striped table-bordered table-light"
@@ -82232,7 +82248,7 @@ var Sales = /*#__PURE__*/function (_React$Component) {
         isOpen: this.state.editSaleModal,
         toggle: this.toggleEditSaleModal
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
-        className: "bg-success text-white"
+        className: "bg-dark text-white"
       }, "Edit Sale"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
         name: "editSale",
         method: "POST",

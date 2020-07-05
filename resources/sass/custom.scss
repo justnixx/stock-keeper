@@ -4,6 +4,7 @@ body {
     background-color: #F1F1F1;
 }
 
+.btn,
 .form-control {
     &:focus {
         box-shadow: 0 0 0 0.1rem rgba(52, 144, 220, 0.25);

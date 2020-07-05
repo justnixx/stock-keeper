@@ -45,7 +45,7 @@ export default class Sales extends React.Component {
     // Get products
     // @void
     getProducts() {
-        axios.get("./api/products").then(response => {
+        axios.get("/api/products").then(response => {
             this.setState({ products: response.data });
         });
     }
@@ -53,7 +53,7 @@ export default class Sales extends React.Component {
     // Get sales
     // @void
     getSales() {
-        axios.get("./api/sales").then(response => {
+        axios.get("/api/sales").then(response => {
             this.setState({ sales: response.data });
         });
     }
@@ -101,7 +101,7 @@ export default class Sales extends React.Component {
             quantity
         } = this.state.editSaleData;
         axios
-            .put("./api/sale/" + id, {
+            .put("/api/sale/" + id, {
                 customer_name,
                 product_name,
                 quantity
@@ -130,7 +130,7 @@ export default class Sales extends React.Component {
     // Delete sale
     // @void
     deleteSale(id) {
-        axios.delete("./api/sale/" + id).then(response => {
+        axios.delete("/api/sale/" + id).then(response => {
             if (response.status === 200) {
                 this.getSales();
                 toastr.success("Sale deleted!", "Success!!!");
@@ -221,7 +221,7 @@ export default class Sales extends React.Component {
         return (
             <Card>
                 <CardHeader className="bg-dark text-white">
-                    <CardTitle>Sales</CardTitle>
+                    <CardTitle className="text-uppercase">Sales</CardTitle>
                 </CardHeader>
                 <CardBody>
                     <div className="table-responsive-lg">
@@ -244,7 +244,7 @@ export default class Sales extends React.Component {
                     isOpen={this.state.editSaleModal}
                     toggle={this.toggleEditSaleModal}
                 >
-                    <ModalHeader className="bg-success text-white">
+                    <ModalHeader className="bg-dark text-white">
                         Edit Sale
                     </ModalHeader>
                     <Form name="editSale" method="POST" autoComplete="off">

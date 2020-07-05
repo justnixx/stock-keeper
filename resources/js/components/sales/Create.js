@@ -37,7 +37,7 @@ export default class Create extends React.Component {
     // Get products
     // @void
     getProducts() {
-        axios.get("./api/products").then(response => {
+        axios.get("/api/products").then(response => {
             this.setState({ products: response.data });
         });
     }
@@ -71,7 +71,7 @@ export default class Create extends React.Component {
                 // console.log(this.state);
             });
         } else {
-            toastr.error("Cannot create empty sale!", "Error!!!");
+            toastr.error("Cannot create an empty sale!", "Error!!!");
         }
     }
 
@@ -86,71 +86,64 @@ export default class Create extends React.Component {
         } = this.state.newSaleData;
 
         // Get the selected Product details
-        axios
-            .get("./api/product/" + product_id)
-            .then(response => {
-                if (response.status === 200) {
-                    this.setState({
-                        updateProductData: response.data
-                    });
-                }
+        axios.get("/api/product/" + product_id).then(response => {
+            if (response.status === 200) {
+                this.setState({
+                    updateProductData: response.data
+                });
+            }
 
-                // Check stock
-                if (parseInt(this.state.updateProductData.stock) === 0) {
-                    toastr.error("Out of stock!");
-                    return false;
-                } else if (
-                    parseInt(this.state.updateProductData.stock) <
-                    parseInt(this.state.newSaleData.quantity)
-                ) {
-                    toastr.warning(
-                        "Not a enough stock " +
-                            this.state.updateProductData.stock +
-                            " left!"
-                    );
-                    return false;
-                } else {
-                    // Subtract quantity from stock
-                    const { updateProductData } = this.state;
-                    updateProductData.stock =
-                        updateProductData.stock -
-                        this.state.newSaleData.quantity;
-                    this.setState({
-                        updateProductData
-                    });
+            // Check stock
+            if (parseInt(this.state.updateProductData.stock) === 0) {
+                toastr.error("Out of stock!");
+                return false;
+            } else if (
+                parseInt(this.state.updateProductData.stock) <
+                parseInt(this.state.newSaleData.quantity)
+            ) {
+                toastr.warning(
+                    "Not a enough stock " +
+                        this.state.updateProductData.stock +
+                        " left!"
+                );
+                return false;
+            } else {
+                // Subtract quantity from stock
+                const { updateProductData } = this.state;
+                updateProductData.stock =
+                    updateProductData.stock - this.state.newSaleData.quantity;
+                this.setState({
+                    updateProductData
+                });
 
-                    axios
-                        .post("./api/sales", {
-                            customer_name,
-                            product_name,
-                            quantity
-                        })
-                        .then(response => {
-                            if (response.status === 200) {
-                                //  Update product
-                                const { stock } = this.state.updateProductData;
-                                axios
-                                    .put(
-                                        "./api/product/" +
-                                            product_id,
-                                        {
-                                            stock
-                                        }
-                                    )
-                                    .then(response => {
-                                        if (response.status === 200) {
-                                            this.resetNewSaleData();
-                                            this.resetFormData();
-                                            toastr.success(
-                                                "Sale created!",
-                                                "Success!!!"
-                                            );
-                                        }
-                                    });
-                            }
-                        });
-                }
-            });
+                axios
+                    .post("/api/sales", {
+                        customer_name,
+                        product_name,
+                        quantity
+                    })
+                    .then(response => {
+                        if (response.status === 200) {
+                            //  Update product
+                            const { stock } = this.state.updateProductData;
+                            axios
+                                .put("/api/product/" + product_id, {
+                                    stock
+                                })
+                                .then(response => {
+                                    if (response.status === 200) {
+                                        this.resetNewSaleData();
+                                        this.resetFormData();
+                                        toastr.success(
+                                            "Sale created!",
+                                            "Success!!!"
+                                        );
+                                    }
+                                });
+                        }
+                    });
+            }
+        });
     }
 
     // Reset new sale Data
@@ -197,7 +190,9 @@ export default class Create extends React.Component {
         return (
             <Card>
                 <CardHeader className="bg-dark text-white">
-                    <CardTitle>Add New Sale</CardTitle>
+                    <CardTitle className="text-uppercase">
+                        Create New Sale
+                    </CardTitle>
                 </CardHeader>
                 <CardBody>
                     <Form

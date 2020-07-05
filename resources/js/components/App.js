@@ -67,7 +67,7 @@ class App extends Component {
         return (
             <Container className="py-4 app-container">
                 <Row>
-                    <Col xs="3 left-pane">
+                    <Col xs="5" md="3" lg="3" className="left-pane">
                         <ListGroup>
                             <ListGroupItem
                                 tag="button"
@@ -115,7 +115,7 @@ class App extends Component {
                             </ListGroupItem>
                         </ListGroup>
                     </Col>
-                    <Col xs="9 main">
+                    <Col xs="7" md="9" lg="9" className="main">
                         {this.state.components.showProducts && <Products />}
                         {this.state.components.showCreateProduct && (
                             <CreateProduct />

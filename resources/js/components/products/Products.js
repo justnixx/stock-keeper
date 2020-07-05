@@ -44,7 +44,7 @@ export default class Products extends React.Component {
     // Get products
     // @void
     getProducts() {
-        axios.get("./api/products").then(response => {
+        axios.get("/api/products").then(response => {
             this.setState({ products: response.data });
         });
     }
@@ -84,7 +84,7 @@ export default class Products extends React.Component {
         } = this.state.editProductData;
         if (id !== "" && name !== "" && description !== "" && stock !== "") {
             axios
-                .put("./api/product/" + id, {
+                .put("/api/product/" + id, {
                     name,
                     description,
                     stock,
@@ -106,13 +106,12 @@ export default class Products extends React.Component {
     // Delete product
     // @void
     deleteProduct(id) {
-        axios
-            .delete("./api/product/" + id)
-            .then(response => {
-                if (response.status === 200) {
-                    this.getProducts();
-                }
-            });
+        axios.delete("/api/product/" + id).then(response => {
+            if (response.status === 200) {
+                this.getProducts();
+                toastr.success("Product deleted!", "Success!!!");
+            }
+        });
     }
 
     // Reset edit product Data
@@ -180,7 +179,7 @@ export default class Products extends React.Component {
         return (
             <Card>
                 <CardHeader className="bg-dark text-white">
-                    <CardTitle>Products</CardTitle>
+                    <CardTitle className="text-uppercase">Products</CardTitle>
                 </CardHeader>
                 <CardBody>
                     <div className="table-responsive-lg">
@@ -203,7 +202,7 @@ export default class Products extends React.Component {
                     isOpen={this.state.editProductModal}
                     toggle={this.toggleEditProductModal}
                 >
-                    <ModalHeader className="bg-success text-white">
+                    <ModalHeader className="bg-dark text-white">
                         Edit Product
                     </ModalHeader>
                     <Form name="editProduct" method="POST" autoComplete="off">
